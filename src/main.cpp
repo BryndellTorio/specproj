@@ -4,8 +4,8 @@
 
 #include <SoftwareSerial.h>
 
-const byte txPin = 3;
-const byte rxPin = 2;
+const byte rxPin = 9;
+const byte txPin = 8;
 
 SoftwareSerial BTSerial(rxPin, txPin);
 
@@ -43,35 +43,34 @@ void setup() {
     pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
 
     Serial.begin(115200);
+    Serial.println("Device Ready!");
 
     /* Setup for BT module */
-    BTSerial.begin(9600);
-    pinMode(txPin, OUTPUT);
+    BTSerial.begin(38400);
     pinMode(rxPin, INPUT);
-    
+    pinMode(txPin, OUTPUT);
 }
 
+String Command;
 char dataByte;
 
 void loop() {
     /* BT module code definitions */
     while(BTSerial.available()) {
-        dataByte = BTSerial.read();
-        Serial.write(dataByte);
+        Serial.write(BTSerial.read());
     }
 
     while(Serial.available()) {
-        dataByte = Serial.read();
-        BTSerial.write(dataByte);
+        BTSerial.write(Serial.read());
     }
 
     if(Serial.available() == 0) {
-        String Command = Serial.readStringUntil('#');
+        Command = Serial.readStringUntil('\n');
         if (Command == "ON") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(155,38,182));
-                pixels.show();
             }
+            pixels.show();
             Serial.println("ON Command initiated.");
         } else if(Command == "OFF") {
             pixels.clear();
@@ -87,27 +86,45 @@ void loop() {
         } else if(Command == "GREEN") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(0,255,0));
-                pixels.show();
             }
+            pixels.show();
             Serial.println("Color set to green.");
         } else if(Command == "RED") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(255,0,0));
-                pixels.show();
             }
+            pixels.show();
             Serial.println("Color set to red.");
         } else if(Command == "BLUE") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(0,0,255));
-                pixels.show();
             }
+            pixels.show();
             Serial.println("Color set to blue.");
         } else if (Command == "TIGEREYE") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(224,141,60));
-                pixels.show();
             }
-            Serial.println("Color set to TIRGEREYE.");
+            pixels.show();
+            Serial.println("Color set to tigereye.");
+        } else if (Command == "YELLOW") {
+            for(int i = 0; i<NUMPIXELS; i++) {
+                pixels.setPixelColor(i, pixels.Color(225,255,0));
+            }
+            pixels.show();
+            Serial.println("Color set to yellow.");
+        } else if (Command == "CYAN") {
+            for(int i = 0; i<NUMPIXELS; i++) {
+                pixels.setPixelColor(i, pixels.Color(0,255,225));
+            }
+            pixels.show();
+            Serial.println("Color set to cyan.");
+        } else if (Command == "MAGENTA") {
+            for(int i = 0; i<NUMPIXELS; i++) {
+                pixels.setPixelColor(i, pixels.Color(225,0,225));
+            }
+            pixels.show();
+            Serial.println("Color set to magenta.");
         }
     }
 }
