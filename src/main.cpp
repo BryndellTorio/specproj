@@ -1,5 +1,14 @@
 #include <Arduino.h>
 
+/* Definitions for HC-05 BT module. */
+
+#include <SoftwareSerial.h>
+
+const byte txPin = 3;
+const byte rxPin = 2;
+
+SoftwareSerial BTSerial(rxPin, txPin);
+
 // NeoPixel Ring simple sketch (c) 2013 Shae Erisson
 // Released under the GPLv3 license to match the rest of the
 // Adafruit NeoPixel library
@@ -34,29 +43,33 @@ void setup() {
     pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
 
     Serial.begin(115200);
+
+    /* Setup for BT module */
+    BTSerial.begin(9600);
+    pinMode(txPin, OUTPUT);
+    pinMode(rxPin, INPUT);
+    
 }
 
+char dataByte;
+
 void loop() {
-    // pixels.clear(); // Set all pixel colors to 'off'
-    //
-    // // The first NeoPixel in a strand is #0, second is 1, all the way up
-    // // to the count of pixels minus one.
-    // for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
-    //
-    //   // pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255
-    //   // Here we're using a moderately bright green color:
-    //   pixels.setPixelColor(i, pixels.Color(224, 141, 60));
-    //
-    //   pixels.show();   // Send the updated pixel colors to the hardware.
-    //
-    //   delay(DELAYVAL); // Pause before next pass through loop
-    // }
+    /* BT module code definitions */
+    while(BTSerial.available()) {
+        dataByte = BTSerial.read();
+        Serial.write(dataByte);
+    }
+
+    while(Serial.available()) {
+        dataByte = Serial.read();
+        BTSerial.write(dataByte);
+    }
+
     if(Serial.available() == 0) {
         String Command = Serial.readStringUntil('#');
         if (Command == "ON") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(155,38,182));
-                // pixels.setPixelColor(i, pixels.Color(224, 141, 60));
                 pixels.show();
             }
             Serial.println("ON Command initiated.");
@@ -66,7 +79,6 @@ void loop() {
             Serial.println("OFF Command initiated.");
         } else if (Command == "SEQ1") {
             for(int i = 0;i<NUMPIXELS; i++) {
-                // pixels.setPixelColor(i, pixels.Color(224, 141, 60));
                 pixels.setPixelColor(i, pixels.Color(155,38,182));
                 pixels.show();
                 delay(DELAYVAL);
@@ -75,24 +87,27 @@ void loop() {
         } else if(Command == "GREEN") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(0,255,0));
-                // pixels.setPixelColor(i, pixels.Color(224, 141, 60));
                 pixels.show();
             }
             Serial.println("Color set to green.");
         } else if(Command == "RED") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(255,0,0));
-                // pixels.setPixelColor(i, pixels.Color(224, 141, 60));
                 pixels.show();
             }
             Serial.println("Color set to red.");
         } else if(Command == "BLUE") {
             for(int i = 0; i<NUMPIXELS; i++) {
                 pixels.setPixelColor(i, pixels.Color(0,0,255));
-                // pixels.setPixelColor(i, pixels.Color(224, 141, 60));
                 pixels.show();
             }
             Serial.println("Color set to blue.");
+        } else if (Command == "TIGEREYE") {
+            for(int i = 0; i<NUMPIXELS; i++) {
+                pixels.setPixelColor(i, pixels.Color(224,141,60));
+                pixels.show();
+            }
+            Serial.println("Color set to TIRGEREYE.");
         }
     }
 }

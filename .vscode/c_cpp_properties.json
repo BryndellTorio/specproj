@@ -8,30 +8,30 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/SPMED01/include",
-                "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/SPMED01/src",
-                "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/SPMED01/.pio/libdeps/uno/Adafruit NeoPixel",
+                "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/specproj/include",
+                "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/specproj/src",
+                "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/specproj/.pio/libdeps/uno/Adafruit NeoPixel",
                 "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/variants/standard",
                 "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/SPMED01/include",
-                    "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/SPMED01/src",
-                    "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/SPMED01/.pio/libdeps/uno/Adafruit NeoPixel",
+                    "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/specproj/include",
+                    "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/specproj/src",
+                    "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "c:/Users/bryndell.torio/OneDrive - Integrated Micro-Electronics Inc/Design/Projects/specproj/.pio/libdeps/uno/Adafruit NeoPixel",
                     "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/variants/standard",
                     "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "C:/Users/bryndell.torio/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
